@@ -2,10 +2,8 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import { createGlobalStyle } from 'styled-components'
 import theme from './utils/theme'
-import Table from './components/table'
-import ButtonGroup from './components/button-group'
-import Button from './components/common/button'
-import images from './assets/images'
+import Toast from './components/toast'
+import toast from './utils/toast'
 
 const GlobalStyles = createGlobalStyle`
   * {
@@ -17,100 +15,26 @@ const GlobalStyles = createGlobalStyle`
   }
 `
 
-const columns = [
-    { header: 'ID', accessor: 'id', sortable: true },
-    { header: 'Name', accessor: 'name', sortable: true },
-    { header: 'Username', accessor: 'username', sortable: true },
-    { header: 'Email', accessor: 'email', sortable: true },
-    { header: 'Phone', accessor: 'phone', sortable: true },
-    { header: 'Website', accessor: 'website', sortable: true },
-]
-
-const data = [
-    {
-        id: 1,
-        name: 'Leanne Graham',
-        username: 'Bret',
-        email: 'Sincere@april.biz',
-        phone: '1-770-736-8031 x56442',
-        website: 'hildegard.org',
-    },
-    {
-        id: 2,
-        name: 'Ervin Howell',
-        username: 'Antonette',
-        email: 'Shanna@melissa.tv',
-        phone: '010-692-6593 x09125',
-        website: 'anastasia.net',
-    },
-    {
-        id: 3,
-        name: 'Clementine Bauch',
-        username: 'Samantha',
-        email: 'Nathan@yesenia.net',
-        phone: '1-463-123-4447',
-        website: 'ramiro.info',
-    },
-    {
-        id: 4,
-        name: 'Patricia Lebsack',
-        username: 'Karianne',
-        email: 'Julianne.OConner@kory.org',
-        phone: '493-170-9623 x156',
-        website: 'kale.biz',
-    },
-    {
-        id: 5,
-        name: 'Chelsey Dietrich',
-        username: 'Kamren',
-        email: 'Lucio_Hettinger@annie.ca',
-        phone: '(254)954-1289',
-        website: 'demarco.info',
-    },
-    {
-        id: 6,
-        name: 'Patricia Lebsack',
-        username: 'Karianne',
-        email: 'Julianne.OConner@kory.org',
-        phone: '493-170-9623 x156',
-        website: 'kale.biz',
-    },
-    {
-        id: 7,
-        name: 'Chelsey Dietrich',
-        username: 'Kamren',
-        email: 'Lucio_Hettinger@annie.ca',
-        phone: '(254)954-1289',
-        website: 'demarco.info',
-    },
-]
+const toastSettings = {
+    withCloseIcon: true,
+}
 
 const root = ReactDOM.createRoot(document.getElementById('root'))
 root.render(
     <React.StrictMode>
         <GlobalStyles />
+        <Toast {...toastSettings} />
         <div style={{ padding: '50px' }}>
-            <Table
-                columns={columns}
-                data={data}
-                border
-                actionButtons
-                itemsPerPage={10}
-                maxPageButtons={5}
-                renderActionButtons={(data) => {
-                    return (
-                        <ButtonGroup>
-                            <Button
-                                icon={images.icons.clock}
-                                title="Follow up"
-                                onClick={() => console.log(data)}
-                            />
-                            <Button icon={images.icons.pen} title="Edit" />
-                            <Button icon={images.icons.bin} title="Delete" />
-                        </ButtonGroup>
-                    )
-                }}
-            />
+            <button onClick={() => toast.success('This is a success toast.')}>
+                Show Success toast
+            </button>
+            <button onClick={() => toast.warning('This is a warning toast.')}>
+                Show Warning toast
+            </button>
+            <button onClick={() => toast.info('This is a info toast.')}>Show Info toast</button>
+            <button onClick={() => toast.danger('This is a danger toast.')}>
+                Show Danger toast
+            </button>
         </div>
     </React.StrictMode>,
 )

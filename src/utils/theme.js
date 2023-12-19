@@ -72,7 +72,8 @@ const theme = {
     },
 
     breakpoints: {
-        xs: 0,
+        xxs: 0,
+        xs: '460px',
         sm: '575.98px',
         md: '767.98px',
         lg: '991.98px',
@@ -81,6 +82,7 @@ const theme = {
     },
 
     zIndex: {
+        toast: 10003,
         alert: 10002,
         modal: 10001,
         dropdown: 101,
@@ -142,6 +144,7 @@ const theme = {
         subtle: '0 2px 4px rgba(0, 0, 0, 0.1)',
         strong: '0 6px 12px rgba(0, 0, 0, 0.2)',
         outline: '0 0 0 4px rgba(100, 100, 255, 0.3)',
+        toast: '0 5px 10px 0 rgba(0, 0, 0, 0.1)',
     },
 
     overlay: {
@@ -217,6 +220,7 @@ const theme = {
 
     iconSize: {
         small: '16px',
+        normal: '20px',
         medium: '24px',
         large: '32px',
     },

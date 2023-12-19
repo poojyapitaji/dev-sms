@@ -1,234 +1,52 @@
-// Styled Components Keyframes
 import { css, keyframes } from 'styled-components'
 
 const fadeInKeyframes = keyframes`
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
 `
 
 const fadeOutKeyframes = keyframes`
-  from {
-    opacity: 1;
-  }
-  to {
-    opacity: 0;
-  }
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
 `
 
-const slideInUpKeyframes = keyframes`
-  from {
-    transform: translateY(100%);
-    opacity: 0;
-  }
-  to {
-    transform: translateY(0);
-    opacity: 1;
-  }
+const generateSlideKeyframes = (startTranslate, endTranslate) => keyframes`
+    from {
+        transform: ${startTranslate};
+        opacity: 0;
+    }
+    to {
+        transform: ${endTranslate};
+        opacity: 1;
+    }
 `
 
-const slideOutUpKeyframes = keyframes`
-  from {
-    transform: translateY(0);
-    opacity: 1;
-  }
-  to {
-    transform: translateY(-100%);
-    opacity: 0;
-  }
-`
+const slideInUpKeyframes = generateSlideKeyframes('translateY(100%)', 'translateY(0)')
+const slideOutUpKeyframes = generateSlideKeyframes('translateY(0)', 'translateY(-100%)')
+const slideInDownKeyframes = generateSlideKeyframes('translateY(-100%)', 'translateY(0)')
+const slideOutDownKeyframes = generateSlideKeyframes('translateY(0)', 'translateY(100%)')
+const slideInLeftKeyframes = generateSlideKeyframes('translateX(-100%)', 'translateX(0)')
+const slideOutLeftKeyframes = generateSlideKeyframes('translateX(0)', 'translateX(-100%)')
+const slideInRightKeyframes = generateSlideKeyframes('translateX(100%)', 'translateX(0)')
+const slideOutRightKeyframes = generateSlideKeyframes('translateX(0)', 'translateX(100%)')
+const slideInUpSmallKeyframes = generateSlideKeyframes('translateY(10px)', 'translateY(0)')
+const slideOutUpSmallKeyframes = generateSlideKeyframes('translateY(0)', 'translateY(-10px)')
+const slideInDownSmallKeyframes = generateSlideKeyframes('translateY(-10px)', 'translateY(0)')
+const slideOutDownSmallKeyframes = generateSlideKeyframes('translateY(0)', 'translateY(10px)')
+const slideInLeftSmallKeyframes = generateSlideKeyframes('translateX(-10px)', 'translateX(0)')
+const slideOutLeftSmallKeyframes = generateSlideKeyframes('translateX(0)', 'translateX(-10px)')
+const slideInRightSmallKeyframes = generateSlideKeyframes('translateX(10px)', 'translateX(0)')
+const slideOutRightSmallKeyframes = generateSlideKeyframes('translateX(0)', 'translateX(10px)')
 
-const slideInDownKeyframes = keyframes`
-  from {
-    transform: translateY(-100%);
-    opacity: 0;
-  }
-  to {
-    transform: translateY(0);
-    opacity: 1;
-  }
-`
-
-const slideOutDownKeyframes = keyframes`
-  from {
-    transform: translateY(0);
-    opacity: 1;
-  }
-  to {
-    transform: translateY(100%);
-    opacity: 0;
-  }
-`
-
-const slideInLeftKeyframes = keyframes`
-  from {
-    transform: translateX(-100%);
-    opacity: 0;
-  }
-  to {
-    transform: translateX(0);
-    opacity: 1;
-  }
-`
-
-const slideOutLeftKeyframes = keyframes`
-  from {
-    transform: translateX(0);
-    opacity: 1;
-  }
-  to {
-    transform: translateX(-100%);
-    opacity: 0;
-  }
-`
-
-const slideInRightKeyframes = keyframes`
-  from {
-    transform: translateX(100%);
-    opacity: 0;
-  }
-  to {
-    transform: translateX(0);
-    opacity: 1;
-  }
-`
-
-const slideOutRightKeyframes = keyframes`
-  from {
-    transform: translateX(0);
-    opacity: 1;
-  }
-  to {
-    transform: translateX(100%);
-    opacity: 0;
-  }
-`
-
-const slideInReverseKeyframes = keyframes`
-  from {
-    transform: scale(0.7);
-    opacity: 0;
-  }
-  to {
-    transform: scale(1);
-    opacity: 1;
-  }
-`
-
-const slideOutReverseKeyframes = keyframes`
-  from {
-    transform: scale(1);
-    opacity: 1;
-  }
-  to {
-    transform: scale(0.7);
-    opacity: 0;
-  }
-`
-
-const toastKeyframes = keyframes`
-  from {
-    transform: translateY(100%);
-    opacity: 0;
-  }
-  to {
-    transform: translateY(0);
-    opacity: 1;
-  }
-`
-
-const slideInUpSmallKeyframes = keyframes`
-  from {
-    transform: translateY(10px);
-    opacity: 0;
-  }
-  to {
-    transform: translateY(0);
-    opacity: 1;
-  }
-`
-
-const slideOutUpSmallKeyframes = keyframes`
-  from {
-    transform: translateY(0);
-    opacity: 1;
-  }
-  to {
-    transform: translateY(-10px);
-    opacity: 0;
-  }
-`
-
-const slideInDownSmallKeyframes = keyframes`
-  from {
-    transform: translateY(-10px);
-    opacity: 0;
-  }
-  to {
-    transform: translateY(0);
-    opacity: 1;
-  }
-`
-
-const slideOutDownSmallKeyframes = keyframes`
-  from {
-    transform: translateY(0);
-    opacity: 1;
-  }
-  to {
-    transform: translateY(10px);
-    opacity: 0;
-  }
-`
-
-const slideInLeftSmallKeyframes = keyframes`
-  from {
-    transform: translateX(-10px);
-    opacity: 0;
-  }
-  to {
-    transform: translateX(0);
-    opacity: 1;
-  }
-`
-
-const slideOutLeftSmallKeyframes = keyframes`
-  from {
-    transform: translateX(0);
-    opacity: 1;
-  }
-  to {
-    transform: translateX(-10px);
-    opacity: 0;
-  }
-`
-
-const slideInRightSmallKeyframes = keyframes`
-  from {
-    transform: translateX(10px);
-    opacity: 0;
-  }
-  to {
-    transform: translateX(0);
-    opacity: 1;
-  }
-`
-
-const slideOutRightSmallKeyframes = keyframes`
-  from {
-    transform: translateX(0);
-    opacity: 1;
-  }
-  to {
-    transform: translateX(10px);
-    opacity: 0;
-  }
-`
-
-export default {
+const oldKeyframes = {
     fadeIn: css`
         ${fadeInKeyframes} 0.3s ease-in-out
     `,
@@ -259,15 +77,6 @@ export default {
     slideOutRight: css`
         ${slideOutRightKeyframes} 0.3s ease-in-out
     `,
-    slideInReverse: css`
-        ${slideInReverseKeyframes} 0.3s ease-in-out
-    `,
-    slideOutReverse: css`
-        ${slideOutReverseKeyframes} 0.3s ease-in-out
-    `,
-    toast: css`
-        ${toastKeyframes} 0.3s ease-in-out
-    `,
     slideInUpSmall: css`
         ${slideInUpSmallKeyframes} 0.3s ease-in-out
     `,
@@ -293,3 +102,80 @@ export default {
         ${slideOutRightSmallKeyframes} 0.3s ease-in-out
     `,
 }
+
+const newKeyframes = {
+    fadeInJS: [{ opacity: 0 }, { opacity: 1 }],
+    fadeOutJS: [{ opacity: 1 }, { opacity: 0 }],
+    slideInUpJS: [
+        { transform: 'translateY(100%)', opacity: 0 },
+        { transform: 'translateY(0)', opacity: 1 },
+    ],
+    slideOutUpJS: [
+        { transform: 'translateY(0)', opacity: 1 },
+        { transform: 'translateY(-100%)', opacity: 0 },
+    ],
+    slideInDownJS: [
+        { transform: 'translateY(-100%)', opacity: 0 },
+        { transform: 'translateY(0)', opacity: 1 },
+    ],
+    slideOutDownJS: [
+        { transform: 'translateY(0)', opacity: 1 },
+        { transform: 'translateY(100%)', opacity: 0 },
+    ],
+    slideInLeftJS: [
+        { transform: 'translateX(-100%)', opacity: 0 },
+        { transform: 'translateX(0)', opacity: 1 },
+    ],
+    slideOutLeftJS: [
+        { transform: 'translateX(0)', opacity: 1 },
+        { transform: 'translateX(-100%)', opacity: 0 },
+    ],
+    slideInRightJS: [
+        { transform: 'translateX(100%)', opacity: 0 },
+        { transform: 'translateX(0)', opacity: 1 },
+    ],
+    slideOutRightJS: [
+        { transform: 'translateX(0)', opacity: 1 },
+        { transform: 'translateX(100%)', opacity: 0 },
+    ],
+    slideInUpSmallJS: [
+        { transform: 'translateY(10px)', opacity: 0 },
+        { transform: 'translateY(0)', opacity: 1 },
+    ],
+    slideOutUpSmallJS: [
+        { transform: 'translateY(0)', opacity: 1 },
+        { transform: 'translateY(-10px)', opacity: 0 },
+    ],
+    slideInDownSmallJS: [
+        { transform: 'translateY(-10px)', opacity: 0 },
+        { transform: 'translateY(0)', opacity: 1 },
+    ],
+    slideOutDownSmallJS: [
+        { transform: 'translateY(0)', opacity: 1 },
+        { transform: 'translateY(10px)', opacity: 0 },
+    ],
+    slideInLeftSmallJS: [
+        { transform: 'translateX(-10px)', opacity: 0 },
+        { transform: 'translateX(0)', opacity: 1 },
+    ],
+    slideOutLeftSmallJS: [
+        { transform: 'translateX(0)', opacity: 1 },
+        { transform: 'translateX(-10px)', opacity: 0 },
+    ],
+    slideInRightSmallJS: [
+        { transform: 'translateX(10px)', opacity: 0 },
+        { transform: 'translateX(0)', opacity: 1 },
+    ],
+    slideOutRightSmallJS: [
+        { transform: 'translateX(0)', opacity: 1 },
+        { transform: 'translateX(10px)', opacity: 0 },
+    ],
+}
+
+const defaultAnimationSetting = {
+    duration: 200,
+    easing: 'ease-in-out',
+    fill: 'forwards',
+}
+
+export default { ...oldKeyframes, ...newKeyframes, defaultAnimationSetting }

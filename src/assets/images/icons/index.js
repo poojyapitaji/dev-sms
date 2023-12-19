@@ -15,6 +15,10 @@ import pen from './pen.svg'
 import bin from './bin.svg'
 import ascending from './ascending.svg'
 import descending from './descending.svg'
+import check_badge from './check_badge.svg'
+import shield_exclamation from './shield_exclamation.svg'
+import information_circle from './information_circle.svg'
+import x_circle from './x_circle.svg'
 
 export default {
     handburger,
@@ -34,4 +38,8 @@ export default {
     bin,
     ascending,
     descending,
+    check_badge,
+    shield_exclamation,
+    information_circle,
+    x_circle,
 }

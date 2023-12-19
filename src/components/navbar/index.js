@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import images from '../../assets/images'
 import { Container, LeftContainer, Img, CenterContainer, RightContainer } from './styles'
+import theme from '../../utils/theme'
 
 const Navbar = () => {
     const [showSmallLogo, setShowsmallLogo] = useState(false)
@@ -8,21 +9,9 @@ const Navbar = () => {
     const handleSidebar = () => {
         const sidebar = document.querySelector('[data-identifier="sms-sidebar"]')
         const x = sidebar.getBoundingClientRect().x
+        const animation = x < 0 ? theme.animation.slideInLeftJS : theme.animation.slideOutLeftJS
 
-        const animationStart = x < 0 ? '-100%' : '0'
-        const animationEnd = x < 0 ? '0' : '-100%'
-
-        sidebar.animate(
-            [
-                { transform: `translateX(${animationStart})` },
-                { transform: `translateX(${animationEnd})` },
-            ],
-            {
-                duration: 200,
-                easing: 'ease-in-out',
-                fill: 'forwards',
-            },
-        )
+        sidebar.animate(animation, theme.animation.defaultAnimationSetting)
     }
 
     useEffect(() => {
