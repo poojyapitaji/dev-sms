@@ -27,6 +27,7 @@ const colorWarning = '#FFB946'
 const colorSecondary = '#F8F9FB'
 const colorInfo = '#2A4F6E'
 const colorGray = '#00000033'
+const colorTransparent = 'transparent'
 
 const colorText = {
     darkest: '#202040',
@@ -69,6 +70,7 @@ const theme = {
         text: colorText,
         background: colorBackground,
         border: colorBorder,
+        transparent: colorTransparent,
     },
 
     breakpoints: {

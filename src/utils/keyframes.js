@@ -57,6 +57,8 @@ const slideInLeftKeyframes = generateSlideKeyframes('translateX(-100%)', 'transl
 const slideOutLeftKeyframes = generateSlideKeyframes('translateX(0)', 'translateX(-100%)')
 const slideInRightKeyframes = generateSlideKeyframes('translateX(100%)', 'translateX(0)')
 const slideOutRightKeyframes = generateSlideKeyframes('translateX(0)', 'translateX(100%)')
+const zoomInKeyframes = generateSlideKeyframes('scale(0.5)', 'scale(1)')
+const zoomOutKeyframes = generateSlideKeyframes('scale(1)', 'scale(0.5)')
 const slideInUpSmallKeyframes = generateSlideKeyframes('translateY(10px)', 'translateY(0)')
 const slideOutUpSmallKeyframes = generateSlideKeyframes('translateY(0)', 'translateY(-10px)')
 const slideInDownSmallKeyframes = generateSlideKeyframes('translateY(-10px)', 'translateY(0)')
@@ -65,6 +67,8 @@ const slideInLeftSmallKeyframes = generateSlideKeyframes('translateX(-10px)', 't
 const slideOutLeftSmallKeyframes = generateSlideKeyframes('translateX(0)', 'translateX(-10px)')
 const slideInRightSmallKeyframes = generateSlideKeyframes('translateX(10px)', 'translateX(0)')
 const slideOutRightSmallKeyframes = generateSlideKeyframes('translateX(0)', 'translateX(10px)')
+const zoomInSmallKeyframes = generateSlideKeyframes('scale(0.9)', 'scale(1)')
+const zoomOutSmallKeyframes = generateSlideKeyframes('scale(1)', 'scale(0.9)')
 
 const oldKeyframes = {
     fadeIn: css`
@@ -97,6 +101,12 @@ const oldKeyframes = {
     slideOutRight: css`
         ${slideOutRightKeyframes} 0.3s ease-in-out
     `,
+    zoomIn: css`
+        ${zoomInKeyframes} 0.3s ease-in-out
+    `,
+    zoomOut: css`
+        ${zoomOutKeyframes} 0.3s ease-in-out
+    `,
     slideInUpSmall: css`
         ${slideInUpSmallKeyframes} 0.3s ease-in-out
     `,
@@ -120,6 +130,12 @@ const oldKeyframes = {
     `,
     slideOutRightSmall: css`
         ${slideOutRightSmallKeyframes} 0.3s ease-in-out
+    `,
+    zoomInSmall: css`
+        ${zoomInSmallKeyframes} 0.3s ease-in-out
+    `,
+    zoomOutSmall: css`
+        ${zoomOutSmallKeyframes} 0.3s ease-in-out
     `,
     widthIncrease: css`
         ${widthIncreaseKeyframes} 0.3s ease-in-out
@@ -164,6 +180,14 @@ const newKeyframes = {
         { transform: 'translateX(0)', opacity: 1 },
         { transform: 'translateX(100%)', opacity: 0 },
     ],
+    zoomInJS: [
+        { transform: 'scale(0.5)', opacity: 1 },
+        { transform: 'scale(1)', opacity: 0 },
+    ],
+    zoomOutJS: [
+        { transform: 'scale(1)', opacity: 1 },
+        { transform: 'scale(0.5)', opacity: 0 },
+    ],
     slideInUpSmallJS: [
         { transform: 'translateY(10px)', opacity: 0 },
         { transform: 'translateY(0)', opacity: 1 },
@@ -195,6 +219,14 @@ const newKeyframes = {
     slideOutRightSmallJS: [
         { transform: 'translateX(0)', opacity: 1 },
         { transform: 'translateX(10px)', opacity: 0 },
+    ],
+    zoomInSmallJS: [
+        { transform: 'scale(0.9)', opacity: 1 },
+        { transform: 'scale(1)', opacity: 0 },
+    ],
+    zoomOutSmallJS: [
+        { transform: 'scale(1)', opacity: 1 },
+        { transform: 'scale(0.9)', opacity: 0 },
     ],
     widthIncreaseJS: [{ width: '0%' }, { width: '100%' }],
     widthDecreaseJS: [{ width: '100%' }, { width: '0%' }],

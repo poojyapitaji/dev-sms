@@ -27,7 +27,7 @@ const Select = ({
     const $selectConatinerRef = useRef(null)
     const $optionsContainerRef = useRef(null)
 
-    useOutsideClick($selectConatinerRef, $optionsContainerRef, () => hanleCloseOptions())
+    useOutsideClick($optionsContainerRef, () => hanleCloseOptions())
 
     useEffect(() => {
         if (defaultSelected) {

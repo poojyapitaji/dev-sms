@@ -1,22 +1,20 @@
 const { useEffect, useCallback } = require('react')
 
-const useOutsideClick = (containerRef = undefined, contentRef = undefined, callback = () => {}) => {
+const useOutsideClick = (contentRef = undefined, callback = () => {}, defaultClosing = true) => {
     const handleClickOutside = useCallback(
         (e) => {
             if (!contentRef.current) return
-            const link = containerRef.current
-            const isLinkClick = link.contains(e.target)
             const root = contentRef.current
             const isClickInside = root.contains(e.target)
-            if (!isClickInside && !isLinkClick) {
+            if (!isClickInside) {
                 callback()
             }
         },
-        [contentRef, containerRef, callback],
+        [contentRef, callback],
     )
 
     useEffect(() => {
-        window.addEventListener('mousedown', handleClickOutside)
+        defaultClosing && window.addEventListener('mousedown', handleClickOutside)
         return () => {
             window.removeEventListener('mousedown', handleClickOutside)
         }

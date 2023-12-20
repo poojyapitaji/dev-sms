@@ -91,4 +91,12 @@ const buttonColor = {
             background: ${theme.mixin.lighten(theme.colors.info, 0.5)};
         }
     `,
+    transparent: css`
+        color: ${theme.colors.text.primary};
+        background: ${theme.colors.transparent};
+
+        &:active {
+            background: ${theme.mixin.lighten(theme.colors.transparent, 0.5)};
+        }
+    `,
 }
