@@ -1,11 +1,16 @@
 import pubsub from 'sweet-pubsub'
-import { v4 as uuidv4 } from 'uuid'
+
+const showToast = ({ type, data }) => {
+    return new Promise((resolve) => {
+        pubsub.emit('show-toast', { type, data, resolve })
+    })
+}
 
 const toast = {
-    success: (data) => pubsub.emit('show-toast', { type: 'success', data }),
-    info: (data) => pubsub.emit('show-toast', { type: 'info', data }),
-    warning: (data) => pubsub.emit('show-toast', { type: 'warning', data }),
-    danger: (data) => pubsub.emit('show-toast', { type: 'danger', data }),
+    success: (data) => showToast({ type: 'success', data }),
+    info: (data) => showToast({ type: 'info', data }),
+    warning: (data) => showToast({ type: 'warning', data }),
+    danger: (data) => showToast({ type: 'danger', data }),
 }
 
 export default toast

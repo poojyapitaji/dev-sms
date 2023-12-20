@@ -138,5 +138,33 @@ export const InfoImg = styled.img`
 `
 
 export const Text = styled.div`
-    margin: 0px 29px;
+    ${(props) =>
+        props.$showIcon &&
+        css`
+            margin-left: 29px;
+        `}
+    ${(props) =>
+        props.$closeIcon &&
+        css`
+            margin-right: 29px;
+        `}
+    ${(props) =>
+        props.$progress &&
+        css`
+            margin-bottom: 3px;
+        `}
+`
+
+export const ProgressBar = styled.div`
+    height: 3px;
+    background: ${(props) => (props.$color ? theme.colors[props.$color] : theme.colors.primary)};
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    animation: ${theme.animation.widthDecrease};
+    ${(props) =>
+        props.$animationDuration &&
+        css`
+            animation-duration: ${props.$animationDuration + 3}ms;
+        `}
 `

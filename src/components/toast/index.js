@@ -2,12 +2,20 @@ import { useEffect, useState } from 'react'
 import pubsub from 'sweet-pubsub'
 import { v4 as uuidv4 } from 'uuid'
 import ReactDOM from 'react-dom'
-import { CloseIcon, Container, InfoImg, Text, ToastContainer } from './styles'
+import { CloseIcon, Container, InfoImg, ProgressBar, Text, ToastContainer } from './styles'
 import images from '../../assets/images'
 import theme from '../../utils/theme'
 
-const Toast = ({ position = 'top-right', withCloseIcon = false, timeout = 5000, ...rest }) => {
-    const [toast, setToast] = useState([])
+const Toast = ({
+    position = 'top-right',
+    withCloseIcon = false,
+    timeout = 5000,
+    autoClose = true,
+    showIcons = true,
+    withProgress = false,
+    ...rest
+}) => {
+    const [toasts, setToasts] = useState([])
 
     const $root = document.getElementById('root')
 
@@ -33,31 +41,42 @@ const Toast = ({ position = 'top-right', withCloseIcon = false, timeout = 5000, 
             id,
             ...toast,
         }
-        setToast((prevToast) => (prevToast ? [...prevToast, newToast] : [newToast]))
-        setTimeout(() => {
-            removeToast(id)
-        }, timeout)
+        setToasts((prevToast) => (prevToast ? [newToast, ...prevToast] : [newToast]))
+
+        if (autoClose) {
+            setTimeout(() => {
+                removeToast(id)
+            }, timeout)
+        }
     }
 
     const removeToast = (id) => {
-        const toastElement = document.getElementById(id)
-        if (toastElement) {
-            const ani = toastElement.animate(
-                toastCloseAnimation[position],
-                theme.animation.defaultAnimationSetting,
-            )
-            ani.onfinish = () => {
-                const filtredToast = toast.filter((t) => t.id !== id)
-                setToast(filtredToast)
+        setToasts((prevToasts) => {
+            const toastElement = document.getElementById(id)
+
+            if (toastElement) {
+                const ani = toastElement.animate(
+                    toastCloseAnimation[position],
+                    theme.animation.defaultAnimationSetting,
+                )
+
+                ani.onfinish = () => {
+                    const filteredToasts = prevToasts.filter((t) => t.id !== id)
+                    setToasts(filteredToasts)
+                }
             }
-        }
+
+            return prevToasts
+        })
     }
 
     const generateToast = (toast) => {
         return (
             <Container {...rest} id={toast.id} key={toast.id} $position={position}>
-                <InfoImg src={toastImages[toast.type]} alt="" />
-                <Text>{toast?.data}</Text>
+                {showIcons && <InfoImg src={toastImages[toast.type]} alt="" />}
+                <Text $showIcon={showIcons} $closeIcon={withCloseIcon} $progress={withProgress}>
+                    {toast?.data}
+                </Text>
                 {withCloseIcon && (
                     <CloseIcon
                         src={images.icons.close}
@@ -65,6 +84,9 @@ const Toast = ({ position = 'top-right', withCloseIcon = false, timeout = 5000, 
                         title="Close"
                         onClick={() => removeToast(toast?.id)}
                     />
+                )}
+                {withProgress && autoClose && (
+                    <ProgressBar $animationDuration={timeout} $color={toast.type} />
                 )}
             </Container>
         )
@@ -78,10 +100,10 @@ const Toast = ({ position = 'top-right', withCloseIcon = false, timeout = 5000, 
     }, [])
 
     return (
-        toast.length > 0 &&
+        toasts.length > 0 &&
         ReactDOM.createPortal(
             <ToastContainer $position={position}>
-                {toast.map((toast) => generateToast(toast))}
+                {toasts.map((toast) => generateToast(toast))}
             </ToastContainer>,
             $root,
         )

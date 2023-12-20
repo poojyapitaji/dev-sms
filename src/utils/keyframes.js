@@ -18,6 +18,26 @@ const fadeOutKeyframes = keyframes`
     }
 `
 
+const widthDecreaseKeyframes = keyframes`
+    from {
+        width: 100%;
+    }
+
+    to{
+        width: 0%
+    }
+`
+
+const widthIncreaseKeyframes = keyframes`
+    from {
+        width: 0%;
+    }
+
+    to{
+        width: 100%
+    }
+`
+
 const generateSlideKeyframes = (startTranslate, endTranslate) => keyframes`
     from {
         transform: ${startTranslate};
@@ -101,6 +121,12 @@ const oldKeyframes = {
     slideOutRightSmall: css`
         ${slideOutRightSmallKeyframes} 0.3s ease-in-out
     `,
+    widthIncrease: css`
+        ${widthIncreaseKeyframes} 0.3s ease-in-out
+    `,
+    widthDecrease: css`
+        ${widthDecreaseKeyframes} 0.3s ease-in-out
+    `,
 }
 
 const newKeyframes = {
@@ -170,6 +196,8 @@ const newKeyframes = {
         { transform: 'translateX(0)', opacity: 1 },
         { transform: 'translateX(10px)', opacity: 0 },
     ],
+    widthIncreaseJS: [{ width: '0%' }, { width: '100%' }],
+    widthDecreaseJS: [{ width: '100%' }, { width: '0%' }],
 }
 
 const defaultAnimationSetting = {
