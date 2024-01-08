@@ -13,7 +13,7 @@ const GlobalStyles = createGlobalStyle`
     scroll-behavior: smooth;
   }
   main {
-    padding: 50px;
+    padding:10px;
   }
 `
 const root = ReactDOM.createRoot(document.getElementById('root'))

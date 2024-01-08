@@ -3,13 +3,14 @@ import { ActionButton, Img } from './styles'
 const Button = ({
     size = 'normal',
     variant = 'secondary',
-    text = undefined,
     loadingText = 'Please wait...',
     isLoading = false,
     rounded = false,
     icon = undefined,
     iconSize = 'normal',
+    iconPosition = 'left',
     buttonStyle = {},
+    children = null,
     ...rest
 }) => {
     return (
@@ -20,8 +21,9 @@ const Button = ({
             style={buttonStyle}
             {...rest}
         >
-            {icon && <Img src={icon} size={iconSize} alt="" />}
-            {isLoading ? loadingText : text && text}
+            {icon && iconPosition === 'left' && <Img src={icon} size={iconSize} alt="" />}
+            {isLoading ? loadingText : children}
+            {icon && iconPosition === 'right' && <Img src={icon} size={iconSize} alt="" />}
         </ActionButton>
     )
 }
